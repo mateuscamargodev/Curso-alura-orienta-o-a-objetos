@@ -1,4 +1,5 @@
 import {Cliente} from "./cliente.js";
+import {ContaCorrente} from "./conta_corrente.js";
 
 export class Conta {
     static numeroDeContas = 0;
@@ -25,12 +26,23 @@ export class Conta {
     }
 
     sacar(valor) {
-        if(this._saldo >= valor) {
-            this._saldo -= valor;
-            return valor;
+        let taxa = 1;
+        const valorSacado = taxa * valor;
+        if(this._saldo >= valorSacado){
+            this._saldo -= valorSacado;
+            return valorSacado;
         }
     }
 
+    _sacar(valor, taxa) {
+        const valorSacado = taxa * valor;
+        if(this._saldo >= valorSacado){
+            this._saldo -= valorSacado;
+        }
+
+        return 0;
+    }
+    
     depositar(valor) {
         if(valor <= 0) {
             return;
