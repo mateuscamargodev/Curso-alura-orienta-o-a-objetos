@@ -1,12 +1,12 @@
-import {Conta} from "./conta.js";
+import {Conta} from "./conta.js"
 
-export class ContaSalario extends Conta {
-    constructor(cliente) {
+export class ContaSalario extends Conta{
+    constructor(cliente){
         super(0, cliente, 100);
     }
 
     sacar(valor){
-        let taxa = 1.01;
+        let taxa = 1.02;
         return this._sacar(valor, taxa);
     }
 }

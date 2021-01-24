@@ -4,25 +4,21 @@ import {ContaCorrente} from "./conta_corrente.js";
 export class Conta {
     static numeroDeContas = 0;
 
-    setCliente(novoValor) {
+    set cliente(novoValor) {
         if(novoValor instanceof Cliente) {
             this._cliente = novoValor;
         }
     }
 
-    getCliente(){
+    get cliente(){
         return this.cliente;
     }
 
-    getSaldo(){
+    get saldo(){
         return this._saldo;
     }
 
     constructor(saldoInicial, cliente, agencia) {
-        if(this.constructor == Conta){
-            throw new Error("Você não deveria instanciar uma classe do tipo conta diretamente!");
-        }
-
         this._saldo = saldoInicial;
         this.cliente = cliente;
         this.agencia = agencia;
@@ -30,7 +26,12 @@ export class Conta {
     }
 
     sacar(valor) {
-        throw new Error("O método sacar da conta é abstrato");
+        let taxa = 1;
+        const valorSacado = taxa * valor;
+        if(this._saldo >= valorSacado){
+            this._saldo -= valorSacado;
+            return valorSacado;
+        }
     }
 
     _sacar(valor, taxa) {
