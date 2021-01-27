@@ -1,24 +1,13 @@
-import {Cliente} from "./cliente.js";
 import {ContaCorrente} from "./conta_corrente.js";
 
 export class Conta {
     static numeroDeContas = 0;
 
-    set cliente(novoValor) {
-        if(novoValor instanceof Cliente) {
-            this._cliente = novoValor;
-        }
-    }
-
-    get cliente(){
-        return this.cliente;
-    }
-
-    get saldo(){
-        return this._saldo;
-    }
-
     constructor(saldoInicial, cliente, agencia) {
+        if(this.constructor == Conta){
+            throw new Error("Você não deveria instanciar um objeto do tipo conta diretamente");
+        }
+        
         this._saldo = saldoInicial;
         this.cliente = cliente;
         this.agencia = agencia;
